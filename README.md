@@ -519,16 +519,6 @@ You design these rules once, when planning your deployment, and then leave them 
 
 ---
 
-# Cleanup
-
-When you're finished, remove the whole lab cluster:
-
-```bash
-kind delete cluster --name placement-demo
-```
-
----
-
 # What to read next
 
 **Topology spread constraints** let you spread pods evenly across nodes and zones *by default*, without writing anti-affinity rules for every app. A natural next step after this lab.
