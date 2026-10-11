@@ -1,4 +1,4 @@
-# Kubernetes Pod Scheduling Lab: Taints, Tolerations, Affinity & Anti-Affinity
+# Kubernetes Pod Scheduling Lab: Taints, Tolerations, Node Affinity, Pod Affinity & Anti-Affinity
 
 A hands-on lab that teaches **how Kubernetes decides where a pod runs**, using a local multi-node [kind](https://kind.sigs.k8s.io/) cluster. Everything runs on your laptop, no cloud account needed.
 
