@@ -508,6 +508,21 @@ Back to the pub one last time:
 | **Pod affinity** | Pod | Places a pod near other pods | Friends who sit together |
 | **Pod anti-affinity** | Pod | Keeps a pod away from other pods | People who should stay apart |
 
+# Key Learnings
+
+Debugging a stuck rollout taught me more than any doc could. Here’s what stuck:
+
+1️⃣ Running ≠ still eligible
+Kubernetes doesn’t automatically evict existing pods when scheduling conditions change. A pod can stay happily Running on a node that a brand-new pod would never be allowed to land on. Healthy-looking pods can hide a broken scheduling config.
+
+2️⃣ ReplicaSets keep your history alive during rollouts
+The old ReplicaSet holds onto its working replicas while the new one tries to create pods and hits scheduling failures. So your app looks fine, while the rollout quietly stalls. Always check both ReplicaSets.
+
+3️⃣ Scale to zero as a diagnostic tool 🔍
+Scaling down to 0 clears out the existing replicas, so every new pod has to pass the scheduler from scratch. It’s a clean way to answer: “Can this pod template actually be scheduled today?”
+
+💡 Takeaway: What’s running now isn’t proof that what you’re deploying will run.
+
 ## Real-world combinations
 
 In a real project you'll rarely use these one at a time:
